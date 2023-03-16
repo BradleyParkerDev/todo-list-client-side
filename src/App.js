@@ -39,7 +39,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <HomePage toDoList={toDoList}/>
+          element: <HomePage toDoList={toDoList} urlEndPoint={urlEndPoint} />
 
         },
         { 
