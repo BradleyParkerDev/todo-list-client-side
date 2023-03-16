@@ -4,7 +4,12 @@ import ToDoCard from "../Components/ToDoCard";
 //home page component 
 const HomePage = (props) => {
 
-    const {toDoList, setToDoList, urlEndPoint } = props
+    const {
+        toDoList, 
+        setToDoList, 
+        urlEndPoint,
+        setShouldRefresh, 
+    } = props
 
     return (
         <div>
@@ -14,6 +19,7 @@ const HomePage = (props) => {
                     toDo={item} 
                     setToDoList={setToDoList} 
                     urlEndPoint={urlEndPoint}
+                    setShouldRefresh={setShouldRefresh}
                     key={index} /> 
                 );
             })}

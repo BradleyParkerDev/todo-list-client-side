@@ -3,7 +3,7 @@ import axios from 'axios';
 // todo card 
 const ToDoCard = (props) => {
 
-    const { toDo, urlEndPoint } = props;
+    const { toDo, urlEndPoint, setShouldRefresh } = props;
     const [title, setTitle] = useState(toDo.title);
     const [priority, setPriority] = useState(toDo.priority);
     const [description, setDescription] = useState(toDo.descrption);
@@ -11,6 +11,7 @@ const ToDoCard = (props) => {
 
     //implement handlers 
     const handleSetToDoComplete = async () => {
+      setShouldRefresh(true);
       const req = {
         isComplete: !toDo.isComplete
       } 
@@ -20,9 +21,10 @@ const ToDoCard = (props) => {
       },{
       'Content-Type': 'application/json'
       })
+      setShouldRefresh(false);
     }
     const handleDeleteToDo = () => {
-      const response = axios.delete(`${urlEndPoint}/todos/update-one/${toDo.id}`)
+      const response = axios.delete(`${urlEndPoint}/todos/delete-one/${toDo.id}`)
       .then(function (response) {
         console.log(response);
       },{
@@ -31,7 +33,7 @@ const ToDoCard = (props) => {
 
     }
     const handleUpdateToDo = () => {
-
+      setShouldRefresh(true);
       const req = {
         title: title,
         description: description,
@@ -43,6 +45,7 @@ const ToDoCard = (props) => {
       },{
       'Content-Type': 'application/json'
       })
+      setShouldRefresh(false);
     }
 
     return (
